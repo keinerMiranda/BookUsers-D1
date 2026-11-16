@@ -36,6 +36,8 @@ public class FormMenu extends JFrame {
         btnRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                FormRegistro ventanaRegistro = new FormRegistro(listaUsuarios, FormMenu.this);
+                ventanaRegistro.setVisible(true);
 
             }
         });
@@ -48,7 +50,7 @@ public class FormMenu extends JFrame {
             }
         });
 
-        // Acción  botón créditos
+        // Acción botón créditos
         btnCreditos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
