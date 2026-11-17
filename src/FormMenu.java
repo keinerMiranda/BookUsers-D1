@@ -46,7 +46,8 @@ public class FormMenu extends JFrame {
         btnListado.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                FormListado ventanaListado= new FormListado(listaUsuarios);
+                ventanaListado.setVisible(true);
             }
         });
 
@@ -61,6 +62,7 @@ public class FormMenu extends JFrame {
 
     // Metodo para el aumento de el id global
     public int obtenerYProgresarId() {
+
         return this.contadorId++;
     }
 

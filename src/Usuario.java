@@ -124,7 +124,11 @@ public class Usuario {
     public void setRutaFoto(String rutaFoto) {
         this.rutaFoto = rutaFoto;
     }
-
+    // Sobreescribir para mostrar los datos limpios en jlist
+    @Override
+    public String toString() {
+        return "ID: " + this.id + " - " + this.username;
+    }
 
 
 }

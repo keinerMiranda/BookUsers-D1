@@ -55,15 +55,57 @@ public class FormRegistro extends JFrame{
         txtPrimerApellido.getDocument().addDocumentListener(escucharEscritura);
         txtSegundoApellido.getDocument().addDocumentListener(escucharEscritura);
 
-        // Acción  botón Guardar
+        // Acción botón Guardar
         btnGuardar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Captura de los datos
+                String tipoId = (String) cmbTipoId.getSelectedItem();
+                String numeroId = txtNumeroId.getText().trim();
+                String primerNombre = txtPrimerNombre.getText().trim();
+                String segundoNombre = txtSegundoNombre.getText().trim();
+                String primerApellido = txtPrimerApellido.getText().trim();
+                String segundoApellido = txtSegundoApellido.getText().trim();
+                String username = lblUsername.getText();
+                String password = new String(txtPassword.getPassword());
+                String telefono = txtTelefono.getText().trim();
+                String correo = txtCorreo.getText().trim();
 
+                // Se toma la ruta de la foto
+                String rutaFoto = lblFoto.getToolTipText();
+                if (rutaFoto == null) {
+                    rutaFoto = "sin_foto.png";
+                }
+
+                if (numeroId.isEmpty() || primerNombre.isEmpty() || primerApellido.isEmpty() ||
+                        password.isEmpty() || telefono.isEmpty() || correo.isEmpty()) {
+
+                    JOptionPane.showMessageDialog(FormRegistro.this,
+                            "Todos los campos con (*) son obligatorios. Por favor verifique.",
+                            "Error de Validacion",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                // Obtener el id de formMenu
+                int idAsignado = menuPrincipal.obtenerYProgresarId();
+
+                // Creacion de el objeto usuario
+                Usuario nuevoUsuario = new Usuario(
+                        idAsignado, tipoId, numeroId, primerNombre, segundoNombre,
+                        primerApellido, segundoApellido, username, password, telefono, correo, rutaFoto
+                );
+                listaUsuarios.add(nuevoUsuario);
+
+                // Mensaje de confirmacion de guardado exitoso
+                JOptionPane.showMessageDialog(FormRegistro.this,
+                        "¡Usuario registrado con éxito!\nID Asignado: " + idAsignado + "\nUsername: "
+                                + username, "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
+                FormRegistro.this.dispose();
             }
         });
 
-        // Acción  botón Cargar Foto
+        // Acción botón Cargar Foto
         btnCargarFoto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
