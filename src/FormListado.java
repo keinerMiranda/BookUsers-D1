@@ -48,6 +48,9 @@ public class FormListado extends JFrame {
                 // Si selecciono a alguien lo mostramos completo
                 Usuario usuarioSeleccionado = listaUsuarios.get(indiceSeleccionado);
 
+                FormDetalle ventanaDetalle = new FormDetalle(usuarioSeleccionado);
+                ventanaDetalle.setVisible(true);
+
             }
         });
     }
