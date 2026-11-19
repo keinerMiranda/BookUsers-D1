@@ -55,7 +55,8 @@ public class FormMenu extends JFrame {
         btnCreditos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                FormCreditos ventanaCreditos = new FormCreditos();
+                ventanaCreditos.setVisible(true);
             }
         });
     }
