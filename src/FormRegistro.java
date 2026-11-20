@@ -87,6 +87,15 @@ public class FormRegistro extends JFrame{
                     return;
                 }
 
+                // Confirmar que se aya puesto el arroba
+                if (!correo.contains("@")) {
+                    JOptionPane.showMessageDialog(FormRegistro.this,
+                            "El correo electronico debe contener @",
+                            "Error de Validacion",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
                 // Obtener el id de formMenu
                 int idAsignado = menuPrincipal.obtenerYProgresarId();
 
@@ -111,6 +120,11 @@ public class FormRegistro extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 //buscador de archivos
                 JFileChooser buscador = new JFileChooser();
+
+                // Filtrar para solo archivos .png y .jpg
+                javax.swing.filechooser.FileNameExtensionFilter filtro =
+                        new javax.swing.filechooser.FileNameExtensionFilter("Imagenes (PNG, JPG)",
+                                "png", "jpg", "jpeg");buscador.setFileFilter(filtro);
 
                 //ventana flotante del explorador
                 int resultado = buscador.showOpenDialog(FormRegistro.this);
