@@ -25,7 +25,7 @@ public class FormMenu extends JFrame {
         setContentPane(panelPrincipal);
 
         // Nombres de el grupo en la ventana del menu
-        setTitle("BookUsers · Keiner  y Juan ");
+        setTitle("BookUsers · Keiner Miranda y Juan Aguilar");
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

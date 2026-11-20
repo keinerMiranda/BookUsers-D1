@@ -8,7 +8,9 @@ public class FormListado extends JFrame {
     private JList<Usuario> lstUsuarios;
     private JButton btnVerDetalle;
     private JPanel panelPrincipal;
+    private JButton btnEliminar;
     private ArrayList<Usuario> listaUsuarios;
+    private DefaultListModel<Usuario> modeloLista;
 
     public FormListado(ArrayList<Usuario> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
@@ -53,6 +55,40 @@ public class FormListado extends JFrame {
 
             }
         });
-    }
 
+        // Accion de el boton de eliminar
+        btnEliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int indice = lstUsuarios.getSelectedIndex();
+
+                // Validar si se selecciono a alguien
+                if (indice == -1) {
+                    JOptionPane.showMessageDialog(FormListado.this,
+                            "Seleccione un usuario de la lista para eliminar",
+                            "Atencion", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
+                Usuario seleccionado = listaUsuarios.get(indice);
+
+                // Confirmacion de la eliminacion del usuario
+                int confirmacion = JOptionPane.showConfirmDialog(FormListado.this,
+                        "¿Esta seguro de eliminar al usuario " + seleccionado.getUsername() + "?",
+                        "Confirmar eliminacion de usuario",
+                        JOptionPane.YES_NO_OPTION);
+
+                if (confirmacion == JOptionPane.YES_OPTION) {
+
+                    // Borra a el usuario de el arrayList general
+                    listaUsuarios.remove(indice);
+
+                    // Borra a el usuario de la ventana de listado
+                    modeloLista.remove(indice);
+                    JOptionPane.showMessageDialog(FormListado.this, "Usuario eliminado");
+                }
+            }
+        });
+
+    }
 }
